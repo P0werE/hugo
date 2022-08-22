@@ -1,0 +1,31 @@
+<nav class="menu">
+    <ul class="menu__inner">
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+        <li class="{{ if eq $currentPage.Name .Name }} active
+            {{end}}">
+            <a href="{{ .URL|relLangURL}}">
+                {{ .Name }}
+            </a>
+        </li>
+        {{ end }}
+
+
+
+        {{- if .Site.Params.EnableGlobalLanguageMenu }}
+        <div class="submenu">
+            <li class="dropdown akcent-color">
+                <a href="javascript:void(0)" class="dropbtn">{{ .Language }}</a>
+                <div class="dropdown-content">
+                    {{ if .Site.IsMultiLingual }}
+                    {{ range $.Translations }}
+                    <a title="{{ .Language }}" href="{{ .Permalink }}">{{
+                        .Language }}</a>
+                    {{ end }}
+                    {{ end }}
+                </div>
+            </li>
+        </div>
+        {{- end }}
+    </ul>
+</nav>

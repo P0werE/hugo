@@ -1,0 +1,23 @@
+<a href="{{ if .Site.Params.Logo.LogoHomeLink }}{{ .Site.Params.Logo.LogoHomeLink
+    }}{{ else }}{{ .Site.BaseURL | relLangURL }}{{ end }}"
+    style="text-decoration: none;">
+
+    {{$currentFileName := lower .Page.Name }}
+    {{ if .Page.IsPage }} {{$currentFileName = path.Clean $currentFileName }}
+    {{end}}
+
+
+
+    <div class="logo">
+        <span class="logo__mark">
+            /home/
+            {{ .IsNode }}
+            {{ .LinkTitle | relURL | lower}}
+        </span>
+        <span class="logo__text">{{ with .Site.Params.Logo.logoText }}{{ . }}{{
+            else }}hello{{ end }}</span>
+
+        <span class="logo__cursor"> </span>
+
+    </div>
+</a>
