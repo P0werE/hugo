@@ -2,25 +2,14 @@
     }}{{ else }}{{ .Site.BaseURL | relLangURL }}{{ end }}"
     style="text-decoration: none;">
 
-    {{$currentFileName := lower .Page.Name }}
-    {{ if .Page.IsPage }} {{$currentFileName = path.Clean $currentFileName }}
-    {{end}}
-
-
-    <!--    {{ $path := printf "/home/%v/%s"  (.IsNode)  (.LinkTitle | relURL | lower) }} -->
-
-    {{ range $index, $component := .Params.components }}
-    {{ $path := $component | printf "%s/%s" $.Site.Params.componentdir | printf "%s" }}
-    {{ partial $path }}
-    {{ end }}   
-
-    {{$path := path.Clean $path }}
+    {{$path := "home/P0werE" }}
+    {{$path := printf "%s%s" $path (relURL .Page.RelPermalink) | lower |
+    path.Clean }}
 
 
     <div class="logo">
         <span class="logo__mark">
             {{$path}}
-            {{ path.Dir .Permalink}}
         </span>
         <span class="logo__text">{{ with .Site.Params.Logo.logoText }}{{ . }}{{
             else }}hello{{ end }}</span>
